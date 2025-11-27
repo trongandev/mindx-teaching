@@ -4,6 +4,11 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+@property --border-angle {
+    inherits: false;
+    initial-value: 0deg;
+    syntax: '<angle>';
+}
 
 :root {
     --background: rgb(38, 38, 36);

@@ -177,7 +177,7 @@ export default function IntroduceProfilePage() {
                             {filterProfile?.project?.map((proj, index) => (
                                 <div
                                     key={index}
-                                    className="bg-gray-950/20 backdrop-blur-xs rounded-2xl border border-white/10 hover:border-white/30 transition-all w-full overflow-hidden"
+                                    className="bg-gray-950/20 backdrop-blur-xs rounded-2xl border border-white/10 hover:border-white/30 transition-all  w-full overflow-hidden"
                                     data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
                                     data-aos-delay={index * 200}
                                 >
