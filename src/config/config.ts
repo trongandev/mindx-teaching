@@ -25,69 +25,28 @@ export const INTRO_TEAMS_MINDX = [
                 websiteLink: 'https://www.caphim.vercel.app/',
             },
         ],
-        techStack: [
-            'HTML',
-            'CSS',
-            'JavaScript',
-            'TypeScript',
-            'Python',
-            'AntDesign',
-            'ShadcnUI',
-            'TailwindCSS',
-            'Bootstrap',
-            'JSON',
-            'Firebase',
-            'PostgreSQL',
-            'MongoDB',
-            'Redis',
-            'ReactJS',
-            'NextJS',
-            'ViteJS',
-            'Tanstack',
-            'NodeJS',
-            'ExpressJS',
-            'NestJS',
-            'Postman',
-            'SocketIO',
-            'JWT',
-            'Clerk',
-            'Vercel',
-            'Github',
-            'AWS',
-            'Docker',
-        ],
+
         aboutMe:
-            'Tôi là một người đam mê sử dụng máy tính từ khi còn nhỏ, luôn chăm chỉ khám phá các công nghệ mới và áp dụng chúng vào các trang web. Tôi thành thạo HTML, CSS, JavaScript và ReactJS. Tôi cũng quen thuộc với NodeJS, ExpressJS và MongoDB. Tôi luôn sẵn sàng học hỏi các công nghệ mới và cải thiện kỹ năng của mình.',
+            'Là một Kĩ sư phần mềm, tôi rất thích tạo ra các phần mềm giải quyết được các vấn đề trong cuộc sống. Tôi luôn cố gắng học hỏi và cập nhật những công nghệ mới nhất để áp dụng vào công việc của mình. Ngoài ra, tôi cũng rất đam mê chia sẻ kiến thức và kinh nghiệm của mình với cộng đồng, đặc biệt là với các bạn học viên tại MindX.',
         classData: {
             numberOfClassesTaught: 48,
             totalStudents: 239,
             expTeachingYears: '06/01/2023',
         },
-        timelines: [
-            {
-                year: '8/2023',
-                event: 'Nhận lớp dạy PTB03 đầu tiên',
-            },
-            {
-                year: '09/2023',
-                event: 'Nhận lớp dạy thứ 2 PTB05',
-            },
-            {
-                year: '11/2023',
-                event: 'Lần đầu tiên được làm giám khảo, chấm điểm các sản phẩm của học viên MindX',
-            },
-            {
-                year: '11/2023',
-                event: 'Tổ chức Demo cuối khóa PTB03',
-            },
+        achievements: [
             {
                 year: '06/2024',
-                event: 'Làm mentor hướng dẫn các bạn học Robotics đi thi tại Robotics Challenge 2024 do trường Đại học Lạc Hồng kết hợp với UBTech tổ chức ',
+                event: 'Làm mentor hướng dẫn các bạn đi thi tại Robotics Challenge 2024 do trường Đại học Lạc Hồng kết hợp với UBTech tổ chức ',
                 desc: 'Đạt giải nhì bảng B',
             },
             {
-                year: '2024-2025',
-                event: 'Được trải nghiệm dạy các môn học Python, GameMaker, Website, Computer Science',
+                year: '12/2024',
+                event: 'Đạt giải giáo viên xuất sắc nhất MindX Biên Hòa năm 2024',
+            },
+
+            {
+                year: '11/2025',
+                event: 'Tham gia giải EduAI do MindX School tổ chức',
             },
         ],
         certificates: [

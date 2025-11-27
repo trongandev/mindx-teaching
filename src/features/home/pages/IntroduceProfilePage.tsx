@@ -1,9 +1,8 @@
 import BlurText from '@/components/BlurText'
-import ShinyText from '@/components/ShinyText'
 import TextType from '@/components/TextType'
 import TiltedCard from '@/components/TiltedCard'
 import { INTRO_TEAMS_MINDX } from '@/config/config'
-import { ArrowRight, Download } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import AnimatedBackground from '../components/AnimatedBackground'
 import { StateMachineInput, useRive } from '@rive-app/react-canvas'
@@ -15,7 +14,7 @@ export default function IntroduceProfilePage() {
     const filterProfile = INTRO_TEAMS_MINDX.find((member) => member.slug === slug)
     const riveInputs = useRef<Record<string, StateMachineInput>>({})
 
-    const { rive } = useRive({
+    const { RiveComponent, rive } = useRive({
         src: `/shake-it-duo.riv`,
         stateMachines: 'State Machine 1',
         autoplay: true,
@@ -45,15 +44,12 @@ export default function IntroduceProfilePage() {
                         <TextType text={[`Hi I'm ${filterProfile?.name}`]} typingSpeed={75} pauseDuration={1500} showCursor={true} cursorCharacter="|" />
                     </h1>
                     <BlurText text={filterProfile?.description || ''} delay={150} animateBy="words" direction="top" className=" mb-6" />
-                    <div className="flex items-center sm:gap-4 gap-2">
-                        <a
-                            href={filterProfile?.cvLink || '#'}
-                            className="flex items-center  gap-2 font-semibold bg-popover p-4 px-6 rounded-full border border-gray-700 hover:bg-[#222] transition-colors "
-                        >
-                            <ShinyText text="Download CV" disabled={false} speed={1} className="custom-class" />
-                            <Download size={18} />
-                        </a>
-                    </div>
+                    <a
+                        href={`mailto:${filterProfile?.email || ''}`}
+                        className="border h-16 bg-popover/60 backdrop-blur-xs border-white/10 shadow px-5 rounded-full flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 cursor-pointer"
+                    >
+                        <Mail /> Liên hệ qua email: {filterProfile?.email}
+                    </a>
                 </div>
                 <div className="hidden md:block md:ml-auto animate__animated animate__fadeInUp animate__delay-1s">
                     <TiltedCard rotateAmplitude={12} scaleOnHover={1.2} showMobileWarning={false} showTooltip={true} displayOverlayContent={true}>
@@ -83,107 +79,115 @@ export default function IntroduceProfilePage() {
                 </div>
             </div>
 
-            <div className=" max-w-7xl mx-auto  relative flex items-center justify-center flex-col gap-5 px-6">
-                <h1 className="text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="200">
-                    Về tôi
-                </h1>
-                <p data-aos="fade-up" data-aos-delay="300" className="mx-auto w-full md:w-[70%] text-xl">
-                    {filterProfile?.aboutMe || ''}
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 flex-1 w-full">
-                    <div className="w-full border bg-popover/20 backdrop-blur-xs border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3  p-6">
-                        <h1 className="text-xl font-medium">Số năm giảng dạy</h1>
-                        <CountUp
-                            from={0}
-                            to={filterProfile?.classData?.expTeachingYears ? new Date().getFullYear() - new Date(filterProfile.classData.expTeachingYears).getFullYear() : 0}
-                            separator=","
-                            direction="up"
-                            duration={1}
-                            className="count-up-text text-3xl font-extrabold"
-                        />
-                    </div>
-                    <div className="w-full border bg-popover/20 backdrop-blur-xs border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3  p-6">
-                        <h1 className="text-xl font-medium">Số lớp đã dạy</h1>
-                        <CountUp from={0} to={filterProfile?.classData?.numberOfClassesTaught || 12} separator="," direction="up" duration={1} className="count-up-text text-3xl  font-extrabold" />
-                    </div>
-                    <div className="w-full border bg-popover/20 backdrop-blur-xs border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3  p-6">
-                        <h1 className="text-xl font-medium">Tổng số học viên đã dạy</h1>
-                        <CountUp from={0} to={filterProfile?.classData?.totalStudents || 89} separator="," direction="up" duration={1} className="count-up-text text-3xl font-extrabold" />
-                    </div>
-                </div>
-                <h1 className="text-4xl font-bold mb-2  mt-10" data-aos="fade-up" data-aos-delay="200">
-                    Các công nghệ đã từng sử dụng và thành thạo
-                </h1>
-                <div className="grid grid-cols-2 md:grid-cols-6 gap-5">
-                    {filterProfile?.techStack?.map((tech: any, index: number) => (
-                        <div
-                            className="bg-popover/20 backdrop-blur-xs transition-all duration-500 flex items-center flex-col gap-2 justify-center p-6 rounded-2xl border border-white/10 group hover:scale-105 cursor-pointer hover:shadow-xl"
-                            key={index}
-                            data-aos={index % 3 === 0 ? 'fade-up-right' : index % 3 === 1 ? 'fade-up' : 'fade-up-left'}
-                            data-aos-duration={index % 3 === 0 ? '1000' : index % 3 === 1 ? '1200' : '1000'}
-                        >
-                            <div className="relative ">
-                                <div className="absolute -inset-1 -z-10 opacity-0 group-hover:opacity-50 bg-linear-to-r from-blue-500 to-purple-500 rounded-full blur"></div>
-                                <img src={`/tech-stack/${tech.toLowerCase()}.svg`} alt={`${tech} icon`} className="h-16"></img>
-                            </div>
-                            <h1 className="text-center mt-3 font-semibold text-sm md:text-base text-slate-300 tracking-wide group-hover:text-white transition-colors duration-300">{tech}</h1>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className="max-w-7xl mx-auto py-20 px-6">
-                <div className="py-20">
-                    <h1 className="text-4xl font-bold mb-12 text-center" data-aos="fade-up">
-                        Dự án cá nhân
-                    </h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5  mb-5 ">
-                        {filterProfile?.project?.map((proj, index) => (
+            <div className=" max-w-7xl mx-auto ">
+                <div className="h-screen flex items-center justify-center ">
+                    <div className="text-center space-y-10">
+                        <h1 className="text-4xl font-bold mb-2 " data-aos="fade-up" data-aos-delay="200">
+                            Về tôi
+                        </h1>
+                        <p data-aos="fade-up" data-aos-delay="300" className="mx-auto w-full md:w-[70%] text-xl">
+                            {filterProfile?.aboutMe || ''}
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 flex-1 w-full">
                             <div
-                                key={index}
-                                className="bg-popover/20 backdrop-blur-xs rounded-2xl border border-white/10 hover:border-white/30 transition-all w-full overflow-hidden"
-                                data-aos="fade-up"
-                                data-aos-delay={index * 100}
+                                className="w-full h-32 border bg-popover/20 backdrop-blur-xs border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3  p-6"
+                                data-aos="fade-right"
+                                data-aos-delay="200"
                             >
-                                <img src={proj.image} alt={proj.title} className="h-80 w-full object-cover" />
-                                <div className="p-6 space-y-3">
-                                    <h3 className="text-2xl font-bold mb-2">{proj.title}</h3>
-                                    <p className="mb-4 text-sm">{proj.description}</p>
-                                    <a href={proj.websiteLink} target="_blank" className="text-blue-500 hover:underline">
-                                        Xem trang web <ArrowRight size={16} className="inline-block ml-1" />
-                                    </a>
-                                </div>
+                                <h1 className="text-xl font-medium">Số năm giảng dạy</h1>
+                                <CountUp
+                                    from={0}
+                                    to={filterProfile?.classData?.expTeachingYears ? new Date().getFullYear() - new Date(filterProfile.classData.expTeachingYears).getFullYear() + 1 : 0}
+                                    separator=","
+                                    direction="up"
+                                    duration={1}
+                                    className="count-up-text text-3xl font-extrabold"
+                                />
                             </div>
-                        ))}
+                            <div
+                                className="w-full h-32 border bg-popover/20 backdrop-blur-xs border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3  p-6"
+                                data-aos="fade-up"
+                                data-aos-delay="300"
+                            >
+                                <h1 className="text-xl font-medium">Số lớp đã dạy</h1>
+                                <CountUp
+                                    from={0}
+                                    to={filterProfile?.classData?.numberOfClassesTaught || 12}
+                                    separator=","
+                                    direction="up"
+                                    duration={1}
+                                    className="count-up-text text-3xl  font-extrabold"
+                                />
+                            </div>
+                            <div
+                                className="w-full h-32 border bg-popover/20 backdrop-blur-xs border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3  p-6"
+                                data-aos="fade-left"
+                                data-aos-delay="400"
+                            >
+                                <h1 className="text-xl font-medium">Tổng số học viên đã dạy</h1>
+                                <CountUp from={0} to={filterProfile?.classData?.totalStudents || 89} separator="," direction="up" duration={1} className="count-up-text text-3xl font-extrabold" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <h1 className="text-4xl font-bold mb-12 text-center" data-aos="fade-up">
-                    Mốc kỷ niệm cá nhân
-                </h1>
-                <div className="relative">
-                    <div className={`absolute md:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-linear-to-b from-blue-500 via-purple-500 to-pink-500`}></div>
-                    {filterProfile?.timelines?.map((item, index) => (
-                        <div
-                            key={index}
-                            className={`flex w-full items-center flex-row  mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                            data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
-                            data-aos-delay={index * 100}
-                        >
-                            <div className="block md:hidden w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10"></div>
-                            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left'}`}>
-                                <div className="bg-popover/20 backdrop-blur-xs p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all w-full">
-                                    <h3 className="text-xl font-bold mb-2">{item.event}</h3>
-                                    {item.desc && <p className="text-gray-400">{item.desc}</p>}
-                                    <p className="text-sm text-gray-400 mb-3">{item.year}</p>
+                <div className="h-screen flex items-center justify-center ">
+                    <div className="">
+                        <h1 className="text-4xl font-bold mb-12 text-center" data-aos="fade-up">
+                            Dự án cá nhân
+                        </h1>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5  mb-5 ">
+                            {filterProfile?.project?.map((proj, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-popover/20 backdrop-blur-xs rounded-2xl border border-white/10 hover:border-white/30 transition-all w-full overflow-hidden"
+                                    data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
+                                    data-aos-delay={index * 200}
+                                >
+                                    <img src={proj.image} alt={proj.title} className="h-80 w-full object-cover" />
+                                    <div className="p-6 space-y-3">
+                                        <h3 className="text-2xl font-bold mb-2">{proj.title}</h3>
+                                        <p className="mb-4 text-sm">{proj.description}</p>
+                                        <a href={proj.websiteLink} target="_blank" className="text-blue-500 hover:underline">
+                                            Xem trang web <ArrowRight size={16} className="inline-block ml-1" />
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="hidden md:block w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10"></div>
-                            <div className="w-1/2"></div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
+                </div>
+                <div className="h-screen flex items-center justify-center ">
+                    <div className="">
+                        <h1 className="text-4xl font-bold mb-12 text-center" data-aos="fade-up">
+                            Thành tựu
+                        </h1>
+                        <div className="relative">
+                            <div className={`absolute md:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-linear-to-b from-blue-500 via-purple-500 to-pink-500`}></div>
+                            {filterProfile?.achievements?.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`flex w-full items-center flex-row  mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                                    data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
+                                    data-aos-delay={index * 100}
+                                >
+                                    <div className="block md:hidden w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10"></div>
+                                    <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left'}`}>
+                                        <div className="bg-popover/20 backdrop-blur-xs p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all w-full">
+                                            <h3 className="text-xl font-bold mb-2">{item.event}</h3>
+                                            {item.desc && <p className="text-gray-400">{item.desc}</p>}
+                                            <p className="text-sm text-gray-400 mb-3">{item.year}</p>
+                                        </div>
+                                    </div>
+                                    <div className="hidden md:block w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10"></div>
+                                    <div className="w-1/2"></div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* <div
+            <div
                 className="cursor-pointer h-screen"
                 onMouseEnter={() => {
                     if (riveInputs.current['onHover']) riveInputs.current['onHover'].value = true
@@ -200,7 +204,7 @@ export default function IntroduceProfilePage() {
             >
                 <h1 className="text-center text-2xl mb-2 font-bold">Nhìn gì?, tét 2 quả đào đi</h1>
                 <RiveComponent className="h-[80vh] bg-transparent" />
-            </div> */}
+            </div>
         </div>
     )
 }
