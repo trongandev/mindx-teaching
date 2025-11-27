@@ -88,7 +88,7 @@ export default function HomePage() {
                                 style={{ animationDelay: `${0.4 + index * 0.2}s` }}
                                 onClick={() => handleClick(member)}
                             >
-                                <img src={member.avatar} alt="" className="w-22 h-22 rounded-full object-cover" />
+                                <img src={member.avatar ? member.avatar : `/images/${member.slug}.jpg`} alt="" className="w-22 h-22 rounded-full object-cover object-[0%_15%]" />
                                 <div className="space-y-1 mt-5">
                                     <h1 className="text-md font-bold">{member.name}</h1>
                                     <p className="text-md">{member.position}</p>

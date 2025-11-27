@@ -3,13 +3,10 @@ export const INTRO_TEAMS_MINDX = [
         id: 1,
         name: 'Nguyễn Trọng An',
         slug: 'nguyen-trong-an',
-        username: 'trongandev',
         email: 'trongandev@gmail.com',
-        quote: 'Luôn là một người đi trước một bước',
+        quote: 'Sống là phải cầm đầu, không phải thợ cắt tóc nhưng phải biết code',
         position: 'Frontend Developer',
         description: `Có lẽ nghề giáo là nghề cao quý nhất trong các nghề cao quý, và tôi rất tự hào khi được trở thành một phần của đội ngũ giảng dạy tại MindX. Với niềm đam mê công nghệ và sự tận tâm trong việc truyền đạt kiến thức, tôi luôn cố gắng mang đến cho học viên những trải nghiệm học tập tốt nhất, giúp họ phát triển kỹ năng và tự tin bước vào thế giới công nghệ đầy thách thức.`,
-        cvLink: 'https://res.cloudinary.com/dxjaiujm4/image/upload/v1764223342/CV_NGUYEN_TRONG_AN_-_Frontend_Developer_1_emm6dx.pdf',
-        avatar: '/images/trongan.jpg',
         project: [
             {
                 title: 'Quizzet - Học từ vựng các loại ngôn ngữ',
@@ -49,18 +46,72 @@ export const INTRO_TEAMS_MINDX = [
                 event: 'Tham gia giải EduAI do MindX School tổ chức',
             },
         ],
-        certificates: [
-            {
-                name: 'Full-Stack Web Development',
-                issuer: 'MindX Technology',
-                issueDate: 'June 2023',
-                credentialLink: 'https://mindx.edu.vn/',
-            },
-        ],
         socialLinks: {
             github: 'https://github.com/trongandev',
             facebook: 'https://facebook.com/trongandev',
-            linkedin: 'https://www.linkedin.com/in/trongandev/',
+            linkedin: 'https://www.linkedin.com/in/troandev/',
+        },
+    },
+    {
+        id: 6,
+        name: 'Đặng Phương Mai',
+        slug: 'dang-phuong-mai',
+        email: 'hori.desuga@gmail.com',
+        position: 'Data scientist/ ML engineer',
+        description:
+            'Làm giáo viên tại MindX khiến tôi nhận ra mình thật sự yêu việc đồng hành cùng học sinh. Mỗi giờ dạy giúp tôi thấy rõ niềm vui khi các em trưởng thành trong tư duy và tự tin hơn trong cách tiếp cận công nghệ. Chính trải nghiệm đó càng thôi thúc tôi theo đuổi con đường nghiên cứu sinh, để hiểu sâu hơn và tạo ra nhiều giá trị hơn cho giáo dục. Tôi muốn dùng hành trình của mình để giúp các em phát triển theo hướng tốt nhất mà các em có thể trở thành.',
+        quote: 'Life’s just a dataset, anh im still cleaning mine',
+        aboutMe:
+            'Là một nhà phân tích dữ liệu và kỹ sư máy học, tôi đam mê dùng dữ liệu để giải quyết những vấn đề thực trong cuộc sống. Tôi cũng bị cuốn hút bởi các câu hỏi lớn của triết học và luôn mang trong mình khát khao truyền cảm hứng cho thế hệ sau, để các em tin rằng tri thức và công nghệ có thể tạo ra thay đổi thật sự, bắt đầu từ chính tư duy của mỗi người. Thông điệp tôi luôn nhắn gửi: không cần trở thành người giỏi nhất, hãy trở thành phiên bản tuyệt nhất của chính mình.',
+        classData: {
+            numberOfClassesTaught: 6,
+            totalStudents: 39,
+            expTeachingYears: '06/02/2025',
+        },
+        project: [
+            {
+                title: '“StarryMind - Nền tảng chatbot hỗ trợ tâm lý cho học sinh',
+                description: 'Starry Mind là một sản phẩm lấy cảm hứng từ phong cách tranh Van Gogh, kết hợp cùng AI để giúp người dùng hiểu cảm xúc của mình tốt hơn.',
+                image: '/images/dangphuongmai/starry-mind.png',
+                websiteLink: '',
+            },
+            {
+                title: 'JobJob - Tinder của tuyển dụng',
+                description:
+                    'Nền tảng tuyển dụng lấy cảm hứng từ tinder, nhắm kết nối nhà tuyển dụng và ứng cử viên một cách nhanh chóng nhất. Nền tảng được ứng dụng học máy để cho sự kết nối minh bạch và phù hợp cho cả đôi bên',
+                image: '/images/dangphuongmai/jobjob.png',
+                websiteLink: '',
+            },
+            {
+                title: '“IU consultants - Chatbot tư vấn tuyển sinh của đại học quốc tế',
+                description: 'Chatbot nhằm hỗ trợ các bạn tân sinh viên/ sinh viên đang theo học tại đại học Quốc tế - ĐHQG tra cứu thông tin nhanh chóng',
+                image: '/images/dangphuongmai/uic.png',
+                websiteLink: '',
+            },
+        ],
+        achievements: [
+            {
+                year: '06/2025',
+                event: 'Dự án tiềm năng cuộc thi khởi nghiệp - IU Demo Day 2025',
+            },
+            {
+                year: '05/2025',
+                event: 'Giải 3 cuộc thi Hackathon Blockchain Solana Pragmatic 2025',
+            },
+            {
+                year: '05/2024',
+                event: 'Top 16 Bảng A cuộc thi Khoa học Dữ liệu UIT 2024',
+            },
+
+            {
+                year: '08/2021',
+                event: 'CCO của Ngô Quyền Debate Club - 2021',
+            },
+        ],
+        socialLinks: {
+            github: 'https://github.com/HoriDang10',
+            facebook: 'https://www.facebook.com/horifatbear',
+            linkedin: 'https://www.linkedin.com/in/maidang105/',
         },
     },
     {
@@ -135,21 +186,6 @@ export const INTRO_TEAMS_MINDX = [
         socialLinks: {
             github: 'https://github.com/nguyentrongan',
             facebook: 'https://facebook.com/nguyentrongan',
-            linkedin: 'https://www.linkedin.com/in/maidang105/',
-        },
-    },
-    {
-        id: 6,
-        name: 'Đặng Mai',
-        slug: 'dang-mai',
-        position: 'Machine Learning Engineer',
-        description: 'Bạn biết tỉ phú Elon Musk chứ? Tôi thì không!!!',
-        quote: 'Bạn biết tỉ phú Elon Musk chứ? Tôi thì không!!!',
-
-        avatar: 'https://plus.unsplash.com/premium_photo-1739201499542-63a08724a1cd?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        socialLinks: {
-            github: 'https://github.com/HoriDang10',
-            facebook: 'https://www.facebook.com/horifatbear',
             linkedin: 'https://www.linkedin.com/in/maidang105/',
         },
     },
