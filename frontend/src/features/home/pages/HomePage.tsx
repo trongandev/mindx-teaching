@@ -11,11 +11,13 @@ import { useAuth } from '@/contexts/AuthContext'
 import AvatarCircle from '@/components/etc/AvatarCircle'
 import type { User as UserType } from '@/types/user'
 import profileService from '@/services/profileService'
+import TextType from '@/components/TextType'
 
 export default function HomePage() {
     const riveInputs = useRef<Record<string, StateMachineInput>>({})
     const [showFullRive, setShowFullRive] = useState(false)
     const [userData, setUserData] = useState<UserType[] | null>(null)
+    const [loading, setLoading] = useState(false)
     const [isIfiniteAnimation, setIsInfiniteAnimation] = useState(() => {
         return localStorage.getItem('isIfiniteAnimation') || 'false'
     })
@@ -39,8 +41,10 @@ export default function HomePage() {
 
     useEffect(() => {
         const fetchUserData = async () => {
+            setLoading(true)
             const req = await profileService.getAllProfile()
             setUserData(req)
+            setLoading(false)
         }
         fetchUserData()
     }, [])
@@ -117,7 +121,8 @@ export default function HomePage() {
                 <p className="animate__animated animate__fadeInUp animate__delay-1s ">Team Teaching mạnh nhất lịch sử MindX, gồm các thành viên máu lạnh!... à nhầm máu mặt tại đây...</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mt-5 ">
-                    {userData &&
+                    {!loading &&
+                        userData &&
                         userData.map((member, index) => (
                             <TiltedCard key={member._id} rotateAmplitude={12} scaleOnHover={1.2} showMobileWarning={false} showTooltip={true} displayOverlayContent={true}>
                                 <div
@@ -157,6 +162,12 @@ export default function HomePage() {
                                 </div>
                             </TiltedCard>
                         ))}
+                    {loading && (
+                        <div className="h-[500px] flex items-center justify-center  col-span-full flex-col gap-5">
+                            <div className="w-16 h-16 rounded-full border-x-4 border-x-gray-300/50 border-y-4 border-y-gray-600/50 animate-spin"></div>
+                            <TextType text={[`Đang tải thông tin các giáo viên`]} typingSpeed={75} pauseDuration={1500} showCursor={true} cursorCharacter="|" className="text-2xl" />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
