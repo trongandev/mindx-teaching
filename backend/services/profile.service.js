@@ -74,7 +74,6 @@ class ProfileService {
 
                 updatedProjects.push(updatedProj)
             }
-
             profile.project = updatedProjects
         }
 
@@ -93,7 +92,6 @@ class ProfileService {
         if (socialLinks !== undefined) {
             profile.socialLinks = typeof socialLinks === 'string' ? JSON.parse(socialLinks) : socialLinks
         }
-
         await profile.save()
         delete profile.password
         return profile

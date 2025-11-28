@@ -6,7 +6,7 @@ const storage = multer.memoryStorage()
 const upload = multer({
     storage: storage,
     limits: {
-        fileSize: 5 * 1024 * 1024, // Giới hạn 5MB
+        fileSize: 10 * 1024 * 1024, // Giới hạn 10MB
     },
     fileFilter: (req, file, cb) => {
         // Chỉ cho phép upload ảnh
