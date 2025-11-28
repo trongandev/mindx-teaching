@@ -385,7 +385,7 @@ export default function ProfilePage() {
                                 </TabsContent>
                                 <TabsContent value="project" className="space-y-4">
                                     {formik.values.project.map((proj: any, index: number) => (
-                                        <div key={index} className="border p-4 rounded-lg space-y-3 relative flex items-center gap-5">
+                                        <div key={index} className="border p-4 rounded-lg bg-popover/50 space-y-3 relative flex items-center gap-5">
                                             <Button
                                                 type="button"
                                                 variant="destructive"
@@ -495,7 +495,7 @@ export default function ProfilePage() {
                                 {/* Achievements Tab */}
                                 <TabsContent value="achievements" className="space-y-4">
                                     {formik.values.achievements.map((achievement: any, index: number) => (
-                                        <div key={index} className="border p-4 rounded-lg space-y-3 relative">
+                                        <div key={index} className="border bg-popover/50 p-4 rounded-lg space-y-3 relative">
                                             <Button
                                                 type="button"
                                                 variant="destructive"
