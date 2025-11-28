@@ -2,7 +2,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Upload, X, Link2 } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { toast } from 'sonner'
 
 interface ImageUploadProps {
@@ -19,6 +19,11 @@ export default function ImageUpload({ label, value, onChange, id, placeholder, r
     const fileInputRef = useRef<HTMLInputElement>(null)
     const urlInputRef = useRef<HTMLInputElement>(null)
 
+    // Sync preview với value từ props
+    useEffect(() => {
+        setPreview(value)
+    }, [value])
+
     // Xử lý upload file
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -32,7 +37,8 @@ export default function ImageUpload({ label, value, onChange, id, placeholder, r
             reader.onloadend = () => {
                 const result = reader.result as string
                 setPreview(result)
-                onChange(result, file)
+                // Chỉ truyền preview URL, file sẽ được gửi riêng
+                onChange('', file) // Không gửi base64 string, chỉ gửi file
             }
             reader.readAsDataURL(file)
         }

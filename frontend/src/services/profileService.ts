@@ -33,9 +33,28 @@ class ProfileService {
             })
         }
 
-        // Append các fields khác dưới dạng JSON string hoặc individual fields
+        // Append các fields khác (loại bỏ những field có base64 image)
         Object.entries(data).forEach(([key, value]) => {
             if (value !== undefined && value !== null) {
+                // Skip avatar nếu là base64 string (sẽ gửi qua file)
+                if (key === 'avatar' && typeof value === 'string' && value.startsWith('data:image/')) {
+                    return
+                }
+
+                // Skip project imageUrl nếu là base64 (sẽ gửi qua file)
+                if (key === 'project' && Array.isArray(value)) {
+                    const cleanedProjects = value.map((proj) => {
+                        const cleanProj = { ...proj }
+                        // Chỉ xử lý nếu có imageUrl property (project object)
+                        if ('imageUrl' in cleanProj && cleanProj.imageUrl && typeof cleanProj.imageUrl === 'string' && cleanProj.imageUrl.startsWith('data:image/')) {
+                            cleanProj.imageUrl = '' // Clear base64, sẽ được thay thế bằng Cloudinary URL
+                        }
+                        return cleanProj
+                    })
+                    formData.append(key, JSON.stringify(cleanedProjects))
+                    return
+                }
+
                 if (typeof value === 'object') {
                     formData.append(key, JSON.stringify(value))
                 } else {
