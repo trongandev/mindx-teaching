@@ -50,13 +50,12 @@ class ProfileService {
             // Nếu avatar là URL mới (paste URL) - không xử lý delete vì không phải từ cloudinary
             profile.avatar = avatar
         }
-
         // Xử lý upload ảnh cho projects
-        if (project && Array.isArray(project)) {
+        if (project) {
             const updatedProjects = []
-
-            for (let i = 0; i < project.length; i++) {
-                const proj = typeof project[i] === 'string' ? JSON.parse(project[i]) : project[i]
+            const parseProject = typeof project === 'string' ? JSON.parse(project) : project
+            for (let i = 0; i < parseProject.length; i++) {
+                const proj = typeof parseProject[i] === 'string' ? JSON.parse(parseProject[i]) : parseProject[i]
                 const updatedProj = { ...proj }
 
                 // Kiểm tra nếu có file upload cho project này
@@ -69,6 +68,7 @@ class ProfileService {
                     updatedProj.imageUrl = imageUrl
                 } else if (proj.imageUrl) {
                     // Giữ nguyên URL nếu không có file mới
+
                     updatedProj.imageUrl = proj.imageUrl
                 }
 

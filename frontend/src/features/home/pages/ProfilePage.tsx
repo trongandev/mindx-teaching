@@ -106,7 +106,6 @@ export default function ProfilePage() {
             try {
                 setIsLoading(true)
                 const res = await profileService.getProfile()
-                console.log(res)
                 setProfile(res)
 
                 // Set initial values for formik
@@ -149,7 +148,6 @@ export default function ProfilePage() {
             </div>
         )
     }
-    console.log(formik.values.avatar, 'formik.values.avatar')
 
     return (
         <div className="max-w-7xl mx-auto px-5 md:px-8 py-8 md:py-12">
