@@ -18,7 +18,8 @@ connectDB()
 // Đường dẫn đến file chứng chỉ và khóa riêng
 
 app.use(cors())
-app.use(express.json())
+app.use(express.json({ limit: '10mb' })) // Thay đổi '10mb' thành kích thước mong muốn
+app.use(express.urlencoded({ limit: '10mb', extended: true }))
 
 // dùng để log ra các request đến server
 app.use(morgan('dev'))
