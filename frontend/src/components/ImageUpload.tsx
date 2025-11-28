@@ -16,6 +16,7 @@ interface ImageUploadProps {
 
 export default function ImageUpload({ label, value, onChange, id, placeholder, required }: ImageUploadProps) {
     const [preview, setPreview] = useState<string>(value)
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const urlInputRef = useRef<HTMLInputElement>(null)
 
@@ -23,6 +24,15 @@ export default function ImageUpload({ label, value, onChange, id, placeholder, r
     useEffect(() => {
         setPreview(value)
     }, [value])
+
+    // Cleanup object URL khi component unmount hoặc file thay đổi
+    useEffect(() => {
+        return () => {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl)
+            }
+        }
+    }, [previewUrl])
 
     // Xử lý upload file
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,26 +43,40 @@ export default function ImageUpload({ label, value, onChange, id, placeholder, r
                 return
             }
 
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                const result = reader.result as string
-                setPreview(result)
-                // Chỉ truyền preview URL, file sẽ được gửi riêng
-                onChange('', file) // Không gửi base64 string, chỉ gửi file
+            // Cleanup previous object URL
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl)
             }
-            reader.readAsDataURL(file)
+
+            // Tạo object URL cho preview
+            const objectUrl = URL.createObjectURL(file)
+            setPreviewUrl(objectUrl)
+            setPreview('') // Clear URL preview
+
+            // Chỉ gửi file, không gửi base64 string
+            onChange('', file)
         }
     }
 
     // Xử lý paste URL
     const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const url = e.target.value
+        // Cleanup object URL khi chuyển sang URL
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl)
+            setPreviewUrl(null)
+        }
         setPreview(url)
         onChange(url)
     }
 
     // Xóa ảnh
     const handleClear = () => {
+        // Cleanup object URL
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl)
+            setPreviewUrl(null)
+        }
         setPreview('')
         onChange('')
         if (fileInputRef.current) fileInputRef.current.value = ''
@@ -66,9 +90,9 @@ export default function ImageUpload({ label, value, onChange, id, placeholder, r
             </Label>
 
             {/* Preview ảnh */}
-            {preview && (
+            {(preview || previewUrl) && (
                 <div className="relative w-full h-48 border rounded-lg overflow-hidden bg-muted">
-                    <img src={preview} alt="Preview" className="w-full h-full object-cover" />
+                    <img src={previewUrl || preview} alt="Preview" className="w-full h-full object-cover" />
                     <Button type="button" variant="destructive" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={handleClear}>
                         <X className="h-4 w-4" />
                     </Button>
