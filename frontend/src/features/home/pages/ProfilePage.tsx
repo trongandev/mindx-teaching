@@ -37,7 +37,7 @@ const profileValidationSchema = Yup.object({
         Yup.object({
             title: Yup.string().required('Tên dự án là bắt buộc'),
             desc: Yup.string(),
-            imageUrl: Yup.string().url('URL hình dự án không hợp lệ'),
+            imageUrl: Yup.string(),
             link: Yup.string().url('Link dự án không hợp lệ'),
         })
     ),
