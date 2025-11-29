@@ -68,7 +68,6 @@ class ProfileService {
                     updatedProj.imageUrl = imageUrl
                 } else if (proj.imageUrl) {
                     // Giữ nguyên URL nếu không có file mới
-
                     updatedProj.imageUrl = proj.imageUrl
                 }
 

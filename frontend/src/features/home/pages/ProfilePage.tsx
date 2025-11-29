@@ -583,7 +583,7 @@ export default function ProfilePage() {
 
                 {/* Action Buttons */}
                 <div className="flex justify-end gap-4 mt-6">
-                    <Button type="submit" variant="outline" onClick={() => navigate('/profile/' + profile?.username)} disabled={formik.isSubmitting || !formik.isValid}>
+                    <Button type="button" variant="outline" onClick={() => navigate('/profile/' + profile?.username)}>
                         <Eye /> Xem profile
                     </Button>
                     <Button type="submit" disabled={formik.isSubmitting || !formik.isValid}>
