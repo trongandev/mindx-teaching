@@ -7,7 +7,7 @@ export default function AvatarCircle({ user, className }: { user?: User; classNa
         <Tooltip>
             <TooltipTrigger>
                 <div className={cn(`w-10 h-10 bg-linear-to-br from-gray-600 text-white to-gray-700/60 rounded-full flex items-center justify-center cursor-pointer relative`, className)}>
-                    <div className="absolute inset-0 border-x-2 border-x-gray-300 border-y-2 border-y-gray-500 rounded-full animate-spin"></div>
+                    <div className="absolute inset-0 border-x-2 border-x-gray-300 border-y-2 border-y-gray-500 rounded-full animate-spin animation-duration-3000"></div>
                     {user?.avatar ? (
                         <img src={user?.avatar} alt={user?.displayName} className="w-9 h-9 rounded-full object-cover object-center relative z-10" />
                     ) : (

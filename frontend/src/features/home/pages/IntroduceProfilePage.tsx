@@ -95,7 +95,7 @@ export default function IntroduceProfilePage() {
                             target="_blank"
                             className="border h-14 w-14 bg-blue-800/10 backdrop-blur-xs border-white/10 shadow  rounded-full flex items-center justify-center  transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden group"
                         >
-                            <div className="absolute inset-0 border border-x-blue-400 border-y-blue-700 rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 border border-x-blue-400 border-y-blue-700 rounded-full animate-spin animation-duration-3000"></div>
                             <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent  -translate-x-full group-hover:translate-x-full transition-all duration-500"></div>
                             <Facebook size={22} />
                         </a>
@@ -104,7 +104,7 @@ export default function IntroduceProfilePage() {
                             target="_blank"
                             className="border h-14 w-14 bg-gray-800/10 backdrop-blur-xs border-white/10 shadow  rounded-full flex items-center justify-center  transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden group"
                         >
-                            <div className="absolute inset-0 border border-x-gray-400 border-y-gray-700 rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 border border-x-gray-400 border-y-gray-700 rounded-full animate-spin animation-duration-3000"></div>
                             <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent  -translate-x-full group-hover:translate-x-full transition-all duration-500"></div>
                             <Github size={22} />
                         </a>
@@ -113,7 +113,7 @@ export default function IntroduceProfilePage() {
                             target="_blank"
                             className="border h-14 w-14 bg-sky-800/10 backdrop-blur-xs border-white/10 shadow  rounded-full flex items-center justify-center  transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden group"
                         >
-                            <div className="absolute inset-0 border border-x-sky-400 border-y-sky-700 rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 border border-x-sky-400 border-y-sky-700 rounded-full animate-spin animation-duration-3000"></div>
                             <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent  -translate-x-full group-hover:translate-x-full transition-all duration-500"></div>
                             <Linkedin size={22} />
                         </a>
@@ -122,12 +122,12 @@ export default function IntroduceProfilePage() {
                 <div className="hidden md:block md:ml-auto animate__animated animate__fadeInUp animate__delay-1s">
                     <TiltedCard rotateAmplitude={12} scaleOnHover={1.2} showMobileWarning={false} showTooltip={true} displayOverlayContent={true}>
                         <div className="bg-gray-800/20 backdrop-blur-xs rounded-4xl flex flex-col items-center w-[400px] overflow-hidden ring-2 ring-white/20 shadow-lg relative group">
-                            <div className="absolute inset-0 bg-linear-to-br from-transparent via-white/10 to-transparent  -translate-x-full group-hover:translate-x-full transition-all duration-500"></div>
+                            <div className="absolute inset-0 bg-linear-to-br from-transparent via-white/10 to-transparent  -translate-x-full group-hover:translate-x-full transition-all duration-1000"></div>
                             <div className="py-10 text-center">
                                 <h1 className="text-3xl font-bold mb-1">{profile?.displayName}</h1>
                                 <p>{profile?.position}</p>
                             </div>
-                            <img src={profile?.avatar} alt={profile?.displayName || ''} className="w-full h-[500px] object-cover rounded-t-4xl brightness-90 object-[0%_25%]" />
+                            <img src={profile?.avatar} alt={profile?.displayName || ''} className="w-full h-[400px] object-cover rounded-t-4xl brightness-90 object-[0%_25%]" />
                             <div className="absolute w-[90%] h-16 bg-popover/50 backdrop-blur-md bottom-2 rounded-2xl flex items-center px-3 gap-2 shadow-sm">
                                 <img src={profile?.avatar} alt={profile?.displayName || ''} className="w-10 h-10 rounded-full object-cover object-[0%_15%]" />
                                 <div className="flex-1 flex items-center justify-between">
