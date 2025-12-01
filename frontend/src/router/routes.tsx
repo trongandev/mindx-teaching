@@ -4,6 +4,7 @@ import IntroduceProfilePage from '@/features/home/pages/IntroduceProfilePage'
 import AuthLayout from '@/layouts/AuthLayout'
 import LoginPage from '@/features/auth/LoginPage'
 import ProfilePage from '@/features/home/pages/ProfilePage'
+import TestPage from '@/features/home/pages/TestPage'
 
 // Lazy Loading các components
 const RootLayout = lazy(() => import('../layouts/RootLayout'))
@@ -23,6 +24,10 @@ export const routes: RouteObject[] = [
                     {
                         index: true,
                         element: <HomePage />,
+                    },
+                    {
+                        path: 'test',
+                        element: <TestPage />,
                     },
                     {
                         path: 'profile',

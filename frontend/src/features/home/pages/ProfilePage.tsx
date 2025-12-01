@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { toast } from 'sonner'
-import { Activity, CirclePlus, Eye, LayoutPanelTop, Loader2, Superscript, Trophy, UserIcon, Trash2, Save } from 'lucide-react'
+import { Activity, CirclePlus, Eye, Loader2, Superscript, Trophy, UserIcon, Trash2, Save } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 // Validation Schema
@@ -33,14 +33,14 @@ const profileValidationSchema = Yup.object({
         github: Yup.string().url('URL GitHub không hợp lệ'),
         facebook: Yup.string().url('URL Facebook không hợp lệ'),
     }),
-    project: Yup.array().of(
-        Yup.object({
-            title: Yup.string().required('Tên dự án là bắt buộc'),
-            desc: Yup.string(),
-            imageUrl: Yup.string(),
-            link: Yup.string().url('Link dự án không hợp lệ'),
-        })
-    ),
+    // project: Yup.array().of(
+    //     Yup.object({
+    //         title: Yup.string().required('Tên dự án là bắt buộc'),
+    //         desc: Yup.string(),
+    //         imageUrl: Yup.string(),
+    //         link: Yup.string().url('Link dự án không hợp lệ'),
+    //     })
+    // ),
     achievements: Yup.array().of(
         Yup.object({
             event: Yup.string().required('Tiêu đề thành tựu là bắt buộc'),
@@ -184,16 +184,16 @@ export default function ProfilePage() {
                     <Card className="lg:col-span-2">
                         <Tabs defaultValue="basic" className="w-full">
                             <CardHeader>
-                                <TabsList className="grid w-full h-10 overflow-x-auto grid-cols-5">
+                                <TabsList className="grid w-full h-10 overflow-x-auto grid-cols-4">
                                     <TabsTrigger value="basic" className="">
                                         <UserIcon className="mr-2 h-4 w-4" /> Thông tin cơ bản
                                     </TabsTrigger>
                                     <TabsTrigger value="teaching" className="">
                                         <Superscript className="mr-2 h-4 w-4" /> Giảng dạy
                                     </TabsTrigger>
-                                    <TabsTrigger value="project" className="">
+                                    {/* <TabsTrigger value="project" className="">
                                         <LayoutPanelTop className="mr-2 h-4 w-4" /> Dự án
-                                    </TabsTrigger>
+                                    </TabsTrigger> */}
                                     <TabsTrigger value="achievements" className="">
                                         <Trophy className="mr-2 h-4 w-4" /> Thành tựu
                                     </TabsTrigger>
@@ -383,7 +383,7 @@ export default function ProfilePage() {
                                         {formik.touched.socialLinks?.facebook && formik.errors.socialLinks?.facebook && <p className="text-sm text-red-500">{formik.errors.socialLinks.facebook}</p>}
                                     </div>
                                 </TabsContent>
-                                <TabsContent value="project" className="space-y-4">
+                                {/* <TabsContent value="project" className="space-y-4">
                                     {formik.values.project.map((proj: any, index: number) => (
                                         <div key={index} className="border p-4 rounded-lg bg-popover/50 space-y-3 relative flex items-center gap-5">
                                             <Button
@@ -490,7 +490,7 @@ export default function ProfilePage() {
                                             <p className="text-gray-400">Chưa có dự án cá nhân nào</p>
                                         </div>
                                     )}
-                                </TabsContent>
+                                </TabsContent> */}
 
                                 {/* Achievements Tab */}
                                 <TabsContent value="achievements" className="space-y-4">

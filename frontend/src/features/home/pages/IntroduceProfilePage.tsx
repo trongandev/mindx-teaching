@@ -1,11 +1,10 @@
 import BlurText from '@/components/BlurText'
 import TextType from '@/components/TextType'
 import TiltedCard from '@/components/TiltedCard'
-import { ArrowRight, ChevronLeft, Facebook, Github, Linkedin, Mail } from 'lucide-react'
+import { ChevronLeft, Facebook, Github, Linkedin, Mail } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import AnimatedBackground from '../components/AnimatedBackground'
-import { StateMachineInput, useRive } from '@rive-app/react-canvas'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import CountUp from '@/components/CountUp'
 import { type User } from '@/types/user'
 import profileService from '@/services/profileService'
@@ -13,15 +12,8 @@ import { Button } from '@/components/ui/button'
 export default function IntroduceProfilePage() {
     const pathname = useLocation().pathname
     const slug = pathname.split('/profile/')[1]
-    // const profile = INTRO_TEAMS_MINDX.find((member) => member.slug === slug)
-    const riveInputs = useRef<Record<string, StateMachineInput>>({})
     const [profile, setProfile] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)
-    const { RiveComponent, rive } = useRive({
-        src: `/shake-it-duo.riv`,
-        stateMachines: 'State Machine 1',
-        autoplay: true,
-    })
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -32,16 +24,7 @@ export default function IntroduceProfilePage() {
         }
         fetchProfile()
     }, [])
-    // Grab inputs for the first Rive
-    useEffect(() => {
-        if (!rive) return
-        const inputs = rive.stateMachineInputs('State Machine 1')
-        const inputMap: Record<string, StateMachineInput> = {}
-        inputs.forEach((i) => {
-            inputMap[i.name] = i
-        })
-        riveInputs.current = inputMap
-    }, [rive])
+
     if (loading) {
         return (
             <div className="h-screen flex items-center justify-center">
@@ -148,7 +131,7 @@ export default function IntroduceProfilePage() {
             </div>
 
             <div className=" max-w-7xl mx-auto ">
-                <div className="h-screen flex items-center justify-center ">
+                <div className="min-h-screen flex items-center justify-center ">
                     <div className="text-center space-y-10">
                         <h1 className="text-4xl font-bold mb-2 " data-aos="fade-up" data-aos-delay="200">
                             Về tôi
@@ -198,7 +181,7 @@ export default function IntroduceProfilePage() {
                         </div>
                     </div>
                 </div>
-                <div className="min-h-screen flex items-center justify-center ">
+                {/* <div className="min-h-screen flex items-center justify-center ">
                     <div className="">
                         <h1 className="text-4xl font-bold mb-12 text-center" data-aos="fade-up">
                             Dự án cá nhân
@@ -232,7 +215,7 @@ export default function IntroduceProfilePage() {
                             {profile?.project?.length === 0 && <div className="text-center col-span-full">Chưa có dự án cá nhân nào được cập nhật.</div>}
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="min-h-screen flex items-center justify-center ">
                     <div className="w-full">
                         <h1 className="text-4xl font-bold mb-12 text-center" data-aos="fade-up">
@@ -246,45 +229,26 @@ export default function IntroduceProfilePage() {
                             {profile?.achievements?.map((item, index) => (
                                 <div
                                     key={index}
-                                    className={`flex w-full flex-1 items-center flex-row  mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                                    className={`flex w-full items-center  flex-row  mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                                     data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
                                     data-aos-delay={index * 100}
                                 >
-                                    <div className="block md:hidden w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10"></div>
-                                    <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left'}`}>
+                                    <div className=" md:hidden w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10 -translate-x-2"></div>
+                                    <div className={`flex-1 w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left'}`}>
                                         <div className="bg-gray-950/20 backdrop-blur-xs p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all w-full">
                                             <h3 className="text-xl font-bold mb-2">{item.event}</h3>
                                             {item.desc && <p className="text-gray-400">{item.desc}</p>}
                                             <p className="text-sm text-gray-400 mb-3">{item.year}</p>
                                         </div>
                                     </div>
-                                    <div className="hidden md:block w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10"></div>
-                                    <div className="w-1/2"></div>
+                                    <div className="hidden md:block w-4 h-4 bg-blue-500 rounded-full border-4 border-background relative z-10 translate-x-2"></div>
+                                    <div className="md:w-1/2"></div>
                                 </div>
                             ))}
                             {profile?.achievements?.length === 0 && <div>Chưa có thành tựu nào được cập nhật.</div>}
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div
-                className="cursor-pointer h-screen"
-                onMouseEnter={() => {
-                    if (riveInputs.current['onHover']) riveInputs.current['onHover'].value = true
-                }}
-                onMouseLeave={() => {
-                    if (riveInputs.current['onHover']) riveInputs.current['onHover'].value = false
-                }}
-                onMouseDown={() => {
-                    if (riveInputs.current['onMousedown']) riveInputs.current['onMousedown'].value = true
-                }}
-                onMouseUp={() => {
-                    if (riveInputs.current['onMousedown']) riveInputs.current['onMousedown'].value = false
-                }}
-            >
-                <h1 className="text-center text-2xl mb-2 font-bold">Nhìn gì?, tét 2 quả đào đi</h1>
-                <RiveComponent className="h-[80vh] bg-transparent" />
             </div>
         </div>
     )
